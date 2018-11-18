@@ -11,18 +11,18 @@ export class AuthService {
     public ngFireAuth: AngularFireAuth
     ) { }
 
-  doLogin(value) {
+  doLogin(user) {
     return new Promise<any>((resolve, reject) => {
-      firebase.auth().signInWithEmailAndPassword(value.email, value.password)
+      firebase.auth().signInWithEmailAndPassword(user.email, user.password)
       .then(res => {
         resolve(res);
       }, err => reject(err));
     });
   }
 
-  doRegister(value) {
+  doRegister(user) {
     return new Promise<any>((resolve, reject) => {
-      firebase.auth().createUserWithEmailAndPassword(value.email, value.password)
+      firebase.auth().createUserWithEmailAndPassword(user.email, user.password)
       .then(res => {
         resolve(res);
       }, err => reject(err));
