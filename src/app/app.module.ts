@@ -5,7 +5,7 @@ import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { ReactiveFormsModule } from '@angular/forms';
 import { environment } from '../environments/environment';
-import { AppRoutingModule } from './app-routing.module';
+import { routes } from './app-routing.module';
 
 // components
 import { AppComponent } from './app.component';
@@ -15,6 +15,7 @@ import { HomeComponent } from './core/home/home.component';
 
 // services
 import { AuthService } from './authentication/services/auth.service';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,7 @@ import { AuthService } from './authentication/services/auth.service';
   imports: [
     BrowserModule,
     ReactiveFormsModule,
-    AppRoutingModule,
+    RouterModule.forRoot(routes, {useHash: false}),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     AngularFireAuthModule
