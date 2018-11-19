@@ -1,6 +1,7 @@
 import { AuthService } from './../../services/auth.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -14,6 +15,7 @@ export class RegisterComponent implements OnInit {
   successMessage = '';
 
   constructor(
+    private router: Router,
     private formBuilder: FormBuilder,
     private authService: AuthService
     ) { }
@@ -35,6 +37,7 @@ export class RegisterComponent implements OnInit {
     .then(res => {
       this.errorMessage = '';
       this.successMessage = 'Your account has been created';
+      this.router.navigate(['/home']);
     }, err => {
       this.errorMessage = err.message;
     });
