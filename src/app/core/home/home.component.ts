@@ -2,9 +2,8 @@ import { UserService } from './../../authentication/services/user.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { UserModel } from './../../authentication/models/user.model';
 import { Component, OnInit } from '@angular/core';
-import { Location } from '@angular/common';
 import { AuthService } from './../../authentication/services/auth.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -21,7 +20,7 @@ export class HomeComponent implements OnInit {
     private fromBuilder: FormBuilder,
     private authService: AuthService,
     private userService: UserService,
-    private location: Location
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -31,7 +30,6 @@ export class HomeComponent implements OnInit {
   getUserData() {
     this.route.data.subscribe( data => {
       const userData = data['data'];
-      console.log(userData)
       if (userData) {
         this.userData = userData;
         this.buildUserForm(userData);
@@ -48,7 +46,7 @@ export class HomeComponent implements OnInit {
   logout() {
     this.authService.doLogout()
     .then((res) => {
-      this.location.back();
+      this.router.navigate(['/login']);
     }, (error) => {
       console.log('Logout error', error);
     });
@@ -57,8 +55,6 @@ export class HomeComponent implements OnInit {
   updateUser() {
     this.userService.updateCurrentUser(this.userForm.value)
     .then(res => {
-      console.log(res);
-      // this.getUserData();
       window.location.reload();
     }, err => console.log(err));
   }
