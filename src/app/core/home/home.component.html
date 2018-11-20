@@ -1,26 +1,26 @@
 <div class="container">
-  <div class="row">
-    <div class="col-md-6 col-md-offset-2 centered">
-        <h1 class="header">Welcome !</h1>
-        <div *ngIf="userData.name !== null; else noName" class="display-name">
-            <img style="width: 100px;" class="card-img-top image" [src]="userData.image" alt="Card image cap">
-            <p>{{userData.name}}</p>
-            <button type="submit" (click)="logout()" class="btn btn-primary">Logout</button>
-        </div>
-        <ng-template #noName>
-            <div class="display-name">
-                Complete your account info
+    <div class="row">
+        <div class="col-md-6 col-md-offset-2 centered">
+            <h1 class="header">Welcome !</h1>
+            <div *ngIf="userData.name !== null; else noName" class="display-name">
+                <img style="width: 100px;" class="card-img-top image" [src]="userData.image" alt="Card image cap">
+                <p>{{userData.name}}</p>
+                <button type="submit" (click)="logout()" class="btn btn-primary">Logout</button>
             </div>
-            <form [formGroup]="userForm">
-                <div class="form-group">
-                    <label class="control-label">Your name</label>
-                    <input type="text" class="form-control" formControlName="name">
+            <ng-template #noName>
+                <div class="display-name">
+                    Complete your account info
                 </div>
-            </form>
-            <button type="submit" (click)="updateUser()" class="btn btn-primary">Save</button>
-        </ng-template>
-  </div>
-</div>
+                <form [formGroup]="userForm">
+                    <div class="form-group">
+                        <label class="control-label">Your name</label>
+                        <input type="text" class="form-control" formControlName="name">
+                    </div>
+                </form>
+                <button type="submit" (click)="updateUser()" class="btn btn-primary">Save</button>
+            </ng-template>
+        </div>
+    </div>
 </div>
 
   

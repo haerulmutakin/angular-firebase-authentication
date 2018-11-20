@@ -10,7 +10,7 @@ export class UserService {
 
   constructor(
    public db: AngularFirestore,
-   public afAuth: AngularFireAuth
+   public ngFireAuth: AngularFireAuth
   ) { }
 
   getCurrentUser() {
